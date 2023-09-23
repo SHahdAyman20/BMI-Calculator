@@ -1,7 +1,8 @@
 import 'dart:math';
+import 'package:bmi_app/result_functions.dart';
 import 'bmi_result_screen.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter/rendering.dart';
+import 'colors.dart';
 
 class BmiScreen extends StatefulWidget {
   @override
@@ -10,64 +11,30 @@ class BmiScreen extends StatefulWidget {
 
 class _BmiScreenState extends State<BmiScreen> {
 
-  //calculate bmi
-  String BmiResult() {
-    result = weight / pow(height / 100, 2);
-    return result.toStringAsFixed(1);
-  }
- // check bmi result and print your bmi rate
-  String getResult() {
-    if (result >= 25) {
-      return 'Overweight 🤦‍♀️😥';
-    } else if (result > 18.5) {
-      return 'Normal 👌';
-    } else {
-      return 'Underweight 😶';
-    }
-  }
- // print statement which describe your state and advice
-  String getInterpretation() {
-    if (result >= 25) {
-      return 'You have a higher than normal body weight. Try to exercise more.\n ❤🏃🚲';
-    } else if (result >= 18.5) {
-      return 'You have a normal body weight. Good job!\n ❤🍇';
-    } else {
-      return 'You have a lower than normal body weight. You can eat a bit more.\n 🍕🍔🍟🍎';
-    }
-  }
 
-
-
-
-  var result;
   bool isMale = true;
-  double height = 180;
-  int weight = 40;
-  int age = 15;
-  Color activeColour = Color(0xFF111328);
-  Color nonactiveColour = Color(0xE51E214B);//
-  Color bottomContainerColour = Color(0xFFEB1555);
-  Color fontColor=Color(0xFF757575);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: activeColour,
+      appBar: AppBar(
+        backgroundColor: activeColour,
         title: Text('BMI Calculator'),
         centerTitle: true,
       ),
       body: Container(
         child: Column(
-
-          //4 part (male || female) ,(height 'slider') ,(weight && age) , (calculate button)
+          // (male || female) ,
+          // (height 'slider') ,
+          // (weight && age) ,
+          // (calculate button)
           children: <Widget>[
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Row(
                   children: <Widget>[
-                    //ex1 for male && SB for space between male,fe && ex2 for fe
-                    //this for male icon
+                    //this for male container
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
@@ -92,7 +59,8 @@ class _BmiScreenState extends State<BmiScreen> {
                                 'MALE',
                                 style: TextStyle(
                                     fontSize: 20.0,
-                                     color:fontColor ),
+                                     color:fontColor
+                                ),
                               )
                             ],
                           ),
@@ -146,7 +114,7 @@ class _BmiScreenState extends State<BmiScreen> {
                 ),
               ),
             ),
-            //this for hight and slider
+            //this for height and slider
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -158,7 +126,8 @@ class _BmiScreenState extends State<BmiScreen> {
                         'HEIGHT',
                         style: TextStyle(
                             fontSize: 25.0,
-                            color:fontColor ),
+                            color:fontColor
+                        ),
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -187,7 +156,7 @@ class _BmiScreenState extends State<BmiScreen> {
                           value: height,
                           max: 220,
                           min: 80,
-                          activeColor: bottomContainerColour,
+                          activeColor: pinkColor,
                           inactiveColor: nonactiveColour,
 
                           onChanged: (value) {
@@ -328,18 +297,8 @@ class _BmiScreenState extends State<BmiScreen> {
             //this for calculate button and calculate your bmi and push to result screen
             Container(
               width: double.infinity,
-              color: bottomContainerColour,
+              color: pinkColor,
               child: MaterialButton(
-                onPressed: () {
-                   result = weight / pow(height / 100, 2);
-                    result.toStringAsFixed(1);
-                 // print(result.roundToDouble());
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => BMIResultScreen(
-                        resultText: getResult(),
-                        BmiResult: BmiResult(),
-                        interpretation: getInterpretation(),)));
-                },
                 height: 50.0,
                 child: Text(
                   'CALCULATE',
@@ -348,6 +307,23 @@ class _BmiScreenState extends State<BmiScreen> {
                       fontWeight: FontWeight.bold,
                       fontSize: 30),
                 ),
+
+
+
+                onPressed: () {
+                   result = weight / pow(height / 100, 2);
+                    result.toStringAsFixed(1);
+                 // print(result.roundToDouble());
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => BMIResultScreen(
+                        resultText: getResult(),
+                        BmiResult: BmiResult(),
+                        interpretation: getInterpretation(),
+                      ),
+                      )
+                  );
+                },
+
               ),
             )
           ],

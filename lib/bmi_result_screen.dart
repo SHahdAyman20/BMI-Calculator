@@ -40,7 +40,8 @@ class BMIResultScreen extends StatelessWidget {
                       fontSize: 45,
                       color: Colors.white
                   ),),),),
-              Expanded(flex: 6,
+              Expanded(
+                flex: 6,
                 child: Container(
                 child: Card(
                   shape: RoundedRectangleBorder(
@@ -84,7 +85,8 @@ class BMIResultScreen extends StatelessWidget {
 
                 ),),
 
-              Container(margin: EdgeInsets.only(top: 20),
+              Container(
+                  margin: EdgeInsets.only(top: 20),
                 width: double.infinity,
                 color: Color(0xFFEB1555),
                 child: MaterialButton(
