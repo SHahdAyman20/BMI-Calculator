@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'bmi_screen.dart';
-import 'bmi_result_screen.dart';
+
 void main() {
-  runApp(myApp());
+  runApp(const MyApp());
 }
-class myApp extends StatelessWidget {
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: BmiScreen(),
     );
   }
+  // Widget -> stateless
+   //         -> stateful
 }
+
 
 

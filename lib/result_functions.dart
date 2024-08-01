@@ -1,15 +1,13 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 
-
-var result;
+var result ;
 double height = 180;
 int weight = 40;
 int age = 15;
 
 //calculate BMI
-String BmiResult() {
+String bmiResult() {
   result = weight / pow(height / 100, 2);
   return result.toStringAsFixed(1);
 }
@@ -33,5 +31,6 @@ String getInterpretation() {
     return 'You have a lower than normal body weight. You can eat a bit more.\n 🍕🍔🍟🍎';
   }
 }
+
 
 
